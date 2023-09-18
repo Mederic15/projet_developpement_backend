@@ -5,7 +5,7 @@ const router = express.Router();
 
 //Mettre les route selon la demande
 /*
-router.get("/addEmployer",controllerEmployer.addEmployer);
+router.post("/users/employers",controllerEmployer.addEmployer);
 
 */
 

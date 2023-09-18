@@ -5,7 +5,7 @@ const router = express.Router();
 
 //Mettre les route selon la demande
 /*
-router.post("/addStudent",controllerStudent.addStudent);
+router.post("/users/students",controllerStudent.addStudent);
 
 */
 
