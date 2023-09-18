@@ -36,10 +36,7 @@ async function getInternshipsByEmployer(req, res, next) {
     });
   } catch (err) {
     console.log(err);
-    new HttpError(
-      "Error while trying check employer's existence",
-      500
-    );
+    new HttpError("Error while trying check employer's existence", 500);
   }
 }
 
@@ -103,7 +100,22 @@ async function patchInternship(req, res, next) {
 }
 
 //DELETE Methods
-async function deleteInternship(req, res, next) {}
+async function deleteInternship(req, res, next) {
+  const internshipId = req.params.internshipId;
+  try {
+    const exists = await internshipExists(internshipId);
+    if (!exists) {
+      next(new HttpError("This internship does not exist", 404));
+    }
+    await Internship.deleteOne({ _id: internshipId });
+    res.status(200).json({
+      message: "Intership was successfully deleted and removed",
+    });
+  } catch (err) {
+    console.log(err);
+    return next(new HttpError("Error while trying to delete internship", 500));
+  }
+}
 
 module.exports = {
   getInternships: getInternships,
