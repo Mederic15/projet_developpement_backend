@@ -36,10 +36,16 @@ async function addInternship(req, res, next) {
 }
 
 //PATCH Methods
-const patchInternships = async (requete, reponse, next) => {
-  const { title, description, salary, address, startingDate, endingDate } = requete.body;
-  const internshipsId = requete.params.internshipsId;
-
+async function patchInternships(req, res, next) {
+  const { 
+    title, 
+    description, 
+    salary, 
+    address, 
+    startingDate, 
+    endingDate 
+  } = req.body;
+  const internshipsId = req.params.internshipsId;
   let internships;
 
   try {
@@ -51,12 +57,12 @@ const patchInternships = async (requete, reponse, next) => {
     internships.startingDate = startingDate;
     internships.endingDate = endingDate;
     await internships.save();
+    res.status(200).json({ internshipsId: internships.toObject({ getters: true }) });
   } catch {
     return next(
       new HttpError("patch internshipsId error", 500)
     );
   }
-  reponse.status(200).json({ internshipsId: internships.toObject({ getters: true }) });
 };
 
 //DELETE Methods
