@@ -5,17 +5,17 @@ const router = express.Router();
 
 //Mettre les route selon la demande
 /*
-router.get("/internships",controllerInternship.getInternships);
+router.get("/",controllerInternship.getInternships);
 
-router.get("/internships/:internshipId",controllerInternship.getInternship);
+router.get("/:internshipId",controllerInternship.getInternship);
 
-router.get("/internships/:employerId",controllerInternship.getInternshipByEmployer);
+router.get("/:employerId",controllerInternship.getInternshipByEmployer);
 
-router.post("/internships",controllerInternship.postInternships);
 
-router.patch("/internships/:internshipId",controllerInternship.patchInternships);
+router.patch("/:internshipId",controllerInternship.patchInternships);
 
-router.delete("/internships/:internshipId",controllerInternship.deleteInternships);
+router.delete("/:internshipId",controllerInternship.deleteInternships);
 */
+router.post("/", controllerInternship.addInternship);
 
 module.exports = router;
