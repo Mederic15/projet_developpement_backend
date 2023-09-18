@@ -15,6 +15,6 @@ router.delete("/:internshipId",controllerInternship.deleteInternships);
 */
 router.post("/", controllerInternship.addInternship);
 
-router.patch("/:internshipId",controllerInternship.patchInternships);
+router.patch("/:internshipId", controllerInternship.patchInternship);
 
 module.exports = router;
