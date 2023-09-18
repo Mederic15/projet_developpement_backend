@@ -1,1 +1,12 @@
-//https://github.com/Mederic15/projet_developpement_backend.git
+const express = require("express");
+
+const controllerEmployer = require("../controllers/employer-controller")
+const router = express.Router();
+
+//Mettre les route selon la demande
+/*
+router.get("/addEmployer",controllerEmployer.addEmployer);
+
+*/
+
+module.exports = router;
