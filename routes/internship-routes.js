@@ -11,7 +11,6 @@ router.get("/:internshipId",controllerInternship.getInternship);
 
 router.get("/:employerId",controllerInternship.getInternshipByEmployer);
 
-
 router.patch("/:internshipId",controllerInternship.patchInternships);
 
 router.delete("/:internshipId",controllerInternship.deleteInternships);

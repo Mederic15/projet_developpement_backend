@@ -11,6 +11,7 @@ async function addInternship(req, res, next) {
     address,
     startingDate,
     endingDate,
+    //Faire la verification de l'employeur
     employerId
   } = req.body;
   try {
@@ -21,6 +22,7 @@ async function addInternship(req, res, next) {
         address,
         startingDate,
         endingDate,
+        //Faire la verification de l'employeur
         employerId
     });
     await internshipToAdd.save();
@@ -34,8 +36,32 @@ async function addInternship(req, res, next) {
 }
 
 //PATCH Methods
+const patchInternships = async (requete, reponse, next) => {
+  const { title, description, salary, address, startingDate, endingDate } = requete.body;
+  const internshipsId = requete.params.internshipsId;
+
+  let internships;
+
+  try {
+    internships = await Internship.findById(internshipsId);
+    internships.title = title;
+    internships.description = description;
+    internships.salary = salary;
+    internships.address = address;
+    internships.startingDate = startingDate;
+    internships.endingDate = endingDate;
+    await internships.save();
+  } catch {
+    return next(
+      new HttpError("patch internshipsId error", 500)
+    );
+  }
+  reponse.status(200).json({ internshipsId: internships.toObject({ getters: true }) });
+};
+
 //DELETE Methods
 
 module.exports = {
     addInternship: addInternship,
+    patchInternships: patchInternships,
   };
