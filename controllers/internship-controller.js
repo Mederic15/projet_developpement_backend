@@ -43,7 +43,7 @@ async function patchInternships(req, res, next) {
     salary, 
     address, 
     startingDate, 
-    endingDate 
+    endingDate
   } = req.body;
   const internshipsId = req.params.internshipsId;
   let internships;
@@ -60,7 +60,7 @@ async function patchInternships(req, res, next) {
     res.status(200).json({ internshipsId: internships.toObject({ getters: true }) });
   } catch {
     return next(
-      new HttpError("patch internshipsId error", 500)
+      new HttpError("Error while trying to update the internship", 500)
     );
   }
 };
