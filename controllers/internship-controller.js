@@ -36,7 +36,7 @@ async function addInternship(req, res, next) {
 }
 
 //PATCH Methods
-async function patchInternships(req, res, next) {
+async function patchInternship(req, res, next) {
   const { 
     title, 
     description, 
@@ -45,19 +45,19 @@ async function patchInternships(req, res, next) {
     startingDate, 
     endingDate
   } = req.body;
-  const internshipsId = req.params.internshipsId;
-  let internships;
+  const internshipId = req.params.internshipId;
+  let internship;
 
   try {
-    internships = await Internship.findById(internshipsId);
-    internships.title = title;
-    internships.description = description;
-    internships.salary = salary;
-    internships.address = address;
-    internships.startingDate = startingDate;
-    internships.endingDate = endingDate;
-    await internships.save();
-    res.status(200).json({ internshipsId: internships.toObject({ getters: true }) });
+    internship = await Internship.findById(internshipId);
+    internship.title = title;
+    internship.description = description;
+    internship.salary = salary;
+    internship.address = address;
+    internship.startingDate = startingDate;
+    internship.endingDate = endingDate;
+    await internship.save();
+    res.status(200).json({ internshipId: internship.toObject({ getters: true }) });
   } catch {
     return next(
       new HttpError("Error while trying to update the internship", 500)
@@ -69,5 +69,5 @@ async function patchInternships(req, res, next) {
 
 module.exports = {
     addInternship: addInternship,
-    patchInternships: patchInternships,
+    patchInternship: patchInternship,
   };
