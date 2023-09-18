@@ -1,20 +1,20 @@
 const express = require("express");
 
-const controllerInternship = require("../controllers/internship-controller")
+const controllerInternship = require("../controllers/internship-controller");
 const router = express.Router();
 
 //Mettre les route selon la demande
 /*
-router.get("/",controllerInternship.getInternships);
+ */
 
-router.get("/:internshipId",controllerInternship.getInternship);
+router.get("/", controllerInternship.getInternships);
 
-router.get("/:employerId",controllerInternship.getInternshipByEmployer);
+router.get("/:employerId", controllerInternship.getInternshipsByEmployer);
 
-router.delete("/:internshipId",controllerInternship.deleteInternships);
-*/
 router.post("/", controllerInternship.addInternship);
 
 router.patch("/:internshipId", controllerInternship.patchInternship);
+
+router.delete("/:internshipId", controllerInternship.deleteInternship);
 
 module.exports = router;
