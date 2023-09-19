@@ -13,6 +13,14 @@ const app = express();
 
 app.use(bodyParser.json());
 
+//Allowing requests from anywhere
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET,POST, PATCH, DELETE");
+    next();
+  });
+
 //Routes definition
 app.use("/internships", internshipRoutes);
 app.use("/users", studentRoutes);
