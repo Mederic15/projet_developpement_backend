@@ -11,6 +11,8 @@ async function addStudent(req, res, next) {
       lastName,
       address,
       phoneNumber,
+      email,
+      password,
     });
     await studentToAdd.save();
     res.status(201).json({ student: studentToAdd.toObject({ getters: true }) });

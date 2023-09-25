@@ -11,6 +11,8 @@ async function addEmployer(req, res, next) {
     managerLastName,
     phoneNumber,
     phoneBooth,
+    email,
+    password,
   } = req.body;
   try {
     const employerToAdd = new Employer({
@@ -20,6 +22,8 @@ async function addEmployer(req, res, next) {
       managerLastName,
       phoneNumber,
       phoneBooth,
+      email,
+      password,
     });
     await employerToAdd.save();
     res
