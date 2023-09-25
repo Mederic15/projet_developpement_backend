@@ -48,7 +48,7 @@ mongoose
       process.env.DB_USER +
       ":" +
       process.env.DB_PASSWORD +
-      "@cluster-gestion-de-stag.b2wvhmb.mongodb.net/?retryWrites=true&w=majority"
+      "@cluster0.fcvd3hp.mongodb.net/"
   )
   .then(() => {
     app.listen(5000);
