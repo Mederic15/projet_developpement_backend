@@ -35,6 +35,26 @@ async function addEmployer(req, res, next) {
   }
 }
 
+async function connexionEmployer(req, res, next) {
+  const { email, password } = req.body;
+  let employerExist
+  try {
+    employerExist = await Employer.findOne({ email: email });
+  } catch (err) {
+    console.log(err);
+    return next(new HttpError("Error while connecting employer", 500));
+  }
+
+  if (!employerExist || employerExist.password !== password) {
+    return next(new HttpErreur("False information on connexion employer", 401));
+  }
+
+  reponse.json({
+    message: "connexion employer",
+    employer: employerExist.toObject({ getters: true }),
+  });
+}
+
 /*
 //PATCH Methods
 async function patchEmployer(req, res, next) {
@@ -64,5 +84,6 @@ async function patchEmployer(req, res, next) {
 
 module.exports = {
   addEmployer: addEmployer,
+  connexionEmployer: connexionEmployer,
   //patchEmployer: patchEmployer,
 };

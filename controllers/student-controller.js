@@ -21,6 +21,27 @@ async function addStudent(req, res, next) {
     return next(new HttpError("Error while creating student", 500));
   }
 }
+
+async function connexionStudent(req, res, next) {
+  const { email, password } = req.body;
+  let studentExist
+  try {
+    studentExist = await Student.findOne({ email: email });
+  } catch (err) {
+    console.log(err);
+    return next(new HttpError("Error while connecting student", 500));
+  }
+
+  if (!studentExist || studentExist.password !== password) {
+    return next(new HttpErreur("False information on connexion student", 401));
+  }
+
+  reponse.json({
+    message: "connexion student",
+    student: studentExist.toObject({ getters: true }),
+  });
+}
+
 //PATCH Methods
 /*
 async function patchStudent(req, res, next) {
@@ -48,5 +69,6 @@ async function patchStudent(req, res, next) {
 
 module.exports = {
   addStudent: addStudent,
+  connexionStudent: connexionStudent,
   //patchStudent: patchStudent,
 };
