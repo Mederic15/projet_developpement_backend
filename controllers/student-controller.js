@@ -1,10 +1,10 @@
 const HttpError = require("../models/http-error");
 const Student = require("../models/student");
 
-//GET Methods
 //POST Methods
 async function addStudent(req, res, next) {
-  const { firstName, lastName, address, phoneNumber, email, password } = req.body;
+  const { firstName, lastName, address, phoneNumber, email, password } =
+    req.body;
   try {
     const studentToAdd = new Student({
       firstName,
@@ -21,12 +21,12 @@ async function addStudent(req, res, next) {
     return next(new HttpError("Error while creating student", 500));
   }
 }
-
+//GET Methods
 async function studentConnection(req, res, next) {
   const { email, password } = req.body;
-  let studentExist
+  let studentExist;
   try {
-    studentExist = await Student.findOne({ email: email, password: password });
+    studentExist = await Student.findOne({ email: email });
   } catch (err) {
     console.log(err);
     return next(new HttpError("Error while connecting student", 500));
@@ -69,5 +69,5 @@ async function patchStudent(req, res, next) {
 
 module.exports = {
   addStudent: addStudent,
-  studentConnection: studentConnection
+  studentConnection: studentConnection,
 };
