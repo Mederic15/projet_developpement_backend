@@ -10,7 +10,7 @@ async function internshipExists(internshipId) {
   return exists;
 }
 
-async function employerExists(employerId) {
+async function userExists(userEmail) {
   let exists = false;
   if (ObjectId.isValid(employerId)) {
     exists = await Employer.exists({ _id: employerId });
@@ -20,5 +20,4 @@ async function employerExists(employerId) {
 
 module.exports = {
   internshipExists: internshipExists,
-  employerExists: employerExists,
 };

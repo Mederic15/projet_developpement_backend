@@ -1,8 +1,7 @@
 const HttpError = require("../models/http-error");
 const Internship = require("../models/internship");
 const {
-  internshipExists,
-  employerExists,
+  internshipExists
 } = require("../utils/useful-functions");
 
 //GET Methods

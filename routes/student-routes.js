@@ -6,6 +6,7 @@ const router = express.Router();
 //Mettre les route selon la demande
 router.post("/students", controllerStudent.addStudent);
 
+router.get("/students", controllerEmployer.studentConnection);
 //router.patch("/studentId", controllerStudent.patchStudent);
 
 module.exports = router;
