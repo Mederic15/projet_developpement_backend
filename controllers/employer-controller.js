@@ -49,7 +49,7 @@ async function employerConnection(req, res, next) {
     return next(new HttpError("False information on connexion employer", 401));
   }
 
-  reponse.status(201).json({
+  res.status(201).json({
     message: "employer object",
     employer: employerExist.toObject({ getters: true }),
   });

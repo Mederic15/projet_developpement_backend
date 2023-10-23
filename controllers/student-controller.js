@@ -36,7 +36,7 @@ async function studentConnection(req, res, next) {
     return next(new HttpError("False information on connexion student", 401));
   }
 
-  reponse.status(201).json({
+  res.status(201).json({
     message: "student object",
     student: studentExist.toObject({ getters: true }),
   });
