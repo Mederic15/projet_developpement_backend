@@ -73,8 +73,6 @@ async function addInternship(req, res, next) {
 async function addStudentToInternship(req, res, next) {
   const { studentId, internshipId } = req.body;
 
-  let internships;
-
   try {
     await Intership.update(
       { _id: internshipId },
