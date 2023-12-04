@@ -92,7 +92,7 @@ async function addStudentToInternship(req, res, next) {
 
       internship.students.push({
         student: student,
-        applicationDate: applicationDate.getDate(),
+        applicationDate: applicationDate,
       });
       internship.save();
     } catch (err) {
