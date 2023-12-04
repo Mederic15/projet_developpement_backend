@@ -73,7 +73,19 @@ async function addInternship(req, res, next) {
 
 async function addStudentToInternship(req, res, next) {
   const { studentId, internshipId } = req.params;
-  const applicationDate = new Date("1995-12-25T23:15:30");
+  var currentdate = new Date();
+  let datetime =
+    currentdate.getDate() +
+    "/" +
+    (currentdate.getMonth() + 1) +
+    "/" +
+    currentdate.getFullYear() +
+    " @ " +
+    currentdate.getHours() +
+    ":" +
+    currentdate.getMinutes() +
+    ":" +
+    currentdate.getSeconds();
   let internship;
 
   try {
@@ -92,7 +104,7 @@ async function addStudentToInternship(req, res, next) {
 
       internship.students.push({
         student: student,
-        applicationDate: applicationDate,
+        applicationDate: datetime,
       });
       internship.save();
     } catch (err) {
