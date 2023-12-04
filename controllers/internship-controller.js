@@ -1,6 +1,6 @@
 const HttpError = require("../models/http-error");
 const Internship = require("../models/internship");
-const Student = require("../models/students");
+const Student = require("../models/student");
 const { internshipExists } = require("../utils/useful-functions");
 
 //GET Methods
