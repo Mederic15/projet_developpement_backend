@@ -88,7 +88,8 @@ async function addStudentToInternship(req, res, next) {
           internshipId +
           " internship",
       });
-  } catch {
+  } catch(err) {
+    console.log(err);
     return next(
       new HttpError("Error while trying to add student to internship", 500)
     );
