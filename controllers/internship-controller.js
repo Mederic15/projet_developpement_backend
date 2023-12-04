@@ -73,7 +73,7 @@ async function addInternship(req, res, next) {
 
 async function addStudentToInternship(req, res, next) {
   const { studentId, internshipId } = req.params;
-  const applicationDate = (new Date()).toLocaleDateString('en-GB');
+  const applicationDate = new Date("1995-12-25T23:15:30");
   let internship;
 
   try {
@@ -92,7 +92,7 @@ async function addStudentToInternship(req, res, next) {
 
       internship.students.push({
         student: student,
-        applicationDate: applicationDate,
+        applicationDate: applicationDate.getDate(),
       });
       internship.save();
     } catch (err) {
