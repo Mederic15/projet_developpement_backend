@@ -74,7 +74,7 @@ async function addStudentToInternship(req, res, next) {
   const { studentId, internshipId } = req.params;
 
   try {
-    await Intership.update(
+    await Internship.update(
       { _id: internshipId },
       { $push: { students: studentId } }
     );
