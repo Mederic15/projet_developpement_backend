@@ -1,5 +1,6 @@
 const HttpError = require("../models/http-error");
 const Internship = require("../models/internship");
+const Student = require("../models/students");
 const { internshipExists } = require("../utils/useful-functions");
 
 //GET Methods
@@ -72,27 +73,46 @@ async function addInternship(req, res, next) {
 
 async function addStudentToInternship(req, res, next) {
   const { studentId, internshipId } = req.params;
+  const applicationDate = new Date().getTime();
+  let internship;
 
   try {
-    await Internship.update(
-      { _id: internshipId },
-      { $push: { students: studentId } }
-    );
-    res
-      .status(200)
-      .json({
-        message:
-          "student " +
-          studentId +
-          " has successfully applied to " +
-          internshipId +
-          " internship",
+    internship = await Internship.findById(internshipId);
+
+    try {
+      let student;
+      try {
+        student = await Student.findById(studentId);
+      } catch (err) {
+        console.log(err);
+        return next(
+          new HttpError("Error while trying to retrieve student", 500)
+        );
+      }
+
+      internship.students.push({
+        student: student,
+        applicationDate: applicationDate,
       });
-  } catch(err) {
+      internship.save();
+    } catch (err) {
+      console.log(err);
+      return next(
+        new HttpError("Error while trying to add student to internship", 500)
+      );
+    }
+
+    res.status(200).json({
+      message:
+        "student " +
+        studentId +
+        " has successfully applied to " +
+        internshipId +
+        " internship",
+    });
+  } catch (err) {
     console.log(err);
-    return next(
-      new HttpError("Error while trying to add student to internship", 500)
-    );
+    return next(new HttpError("Error while trying to retrive internship", 500));
   }
 }
 

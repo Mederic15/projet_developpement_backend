@@ -7,6 +7,5 @@ const router = express.Router();
 router.post("/students", controllerStudent.addStudent);
 
 router.patch("/students", controllerStudent.studentConnection);
-//router.patch("/studentId", controllerStudent.patchStudent);
 
 module.exports = router;
