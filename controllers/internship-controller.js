@@ -47,6 +47,8 @@ async function addInternship(req, res, next) {
     address,
     startingDate,
     endingDate,
+    managerName,
+    managerEmail,
     //Faire la verification de l'employeur
     employerId,
   } = req.body;
@@ -58,6 +60,8 @@ async function addInternship(req, res, next) {
       address,
       startingDate,
       endingDate,
+      managerName,
+      managerEmail,
       //Faire la verification de l'employeur
       employerId,
     });

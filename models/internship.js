@@ -13,6 +13,8 @@ const internshipSchema = new Schema({
     required: true,
     ref: "Employer",
   },
+  managerName: { type: String, required: true },
+  managerEmail: { type: String, required: true },
   students: { type: [], required: false },
 });
 
