@@ -35,11 +35,28 @@ async function addEmployer(req, res, next) {
   }
 }
 
+async function getEmployerInfoById(req, res, next) {
+  const { employerId } = req.params;
+  let employer;
+  try {
+    employer = await Employer.findById(employerId);
+    res.status(201).json({
+      employer: employer,
+    });
+  } catch (err) {
+    console.log(err);
+    return next(new HttpError("Error while retrieving employer", 500));
+  }
+}
+
 async function employerConnection(req, res, next) {
   const { email, password } = req.body;
-  let employerExist
+  let employerExist;
   try {
-    employerExist = await Employer.findOne({ email: email, password: password });
+    employerExist = await Employer.findOne({
+      email: email,
+      password: password,
+    });
   } catch (err) {
     console.log(err);
     return next(new HttpError("Error while connecting employer", 500));
@@ -84,5 +101,6 @@ async function patchEmployer(req, res, next) {
 
 module.exports = {
   addEmployer: addEmployer,
-  employerConnection: employerConnection
+  employerConnection: employerConnection,
+  getEmployerInfoById: getEmployerInfoById,
 };
