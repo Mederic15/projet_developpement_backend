@@ -81,7 +81,7 @@ async function addStudentToInternship(req, res, next) {
     "/" +
     currentdate.getFullYear() +
     " @ " +
-    currentdate.getHours() +
+    (currentdate.getHours() - 5) +
     ":" +
     currentdate.getMinutes() +
     ":" +
