@@ -13,6 +13,9 @@ router.get("/:employerId", controllerInternship.getInternshipsByEmployer);
 
 router.post("/", controllerInternship.addInternship);
 
+router.patch("/:internshipId/:studentId", controllerInternship.addStudentToInternship);
+
+
 router.patch("/:internshipId", controllerInternship.patchInternship);
 
 router.delete("/:internshipId", controllerInternship.deleteInternship);

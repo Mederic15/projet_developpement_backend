@@ -1,8 +1,6 @@
 const HttpError = require("../models/http-error");
 const Internship = require("../models/internship");
-const {
-  internshipExists
-} = require("../utils/useful-functions");
+const { internshipExists } = require("../utils/useful-functions");
 
 //GET Methods
 async function getInternships(req, res, next) {
@@ -72,6 +70,33 @@ async function addInternship(req, res, next) {
   }
 }
 
+async function addStudentToInternship(req, res, next) {
+  const { studentId, internshipId } = req.body;
+
+  let internships;
+
+  try {
+    await Intership.update(
+      { _id: internshipId },
+      { $push: { students: studentId } }
+    );
+    res
+      .status(200)
+      .json({
+        message:
+          "student " +
+          studentId +
+          " has successfully applied to " +
+          internshipId +
+          " internship",
+      });
+  } catch {
+    return next(
+      new HttpError("Error while trying to add student to internship", 500)
+    );
+  }
+}
+
 //PATCH Methods
 async function patchInternship(req, res, next) {
   const { title, description, salary, address, startingDate, endingDate } =
@@ -122,4 +147,5 @@ module.exports = {
   addInternship: addInternship,
   patchInternship: patchInternship,
   deleteInternship: deleteInternship,
+  addStudentToInternship: addStudentToInternship,
 };

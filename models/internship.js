@@ -13,6 +13,7 @@ const internshipSchema = new Schema({
     required: true,
     ref: "Employer",
   },
+  students: { type: [], required: false },
 });
 
 module.exports = mongoose.model("Internship", internshipSchema);
